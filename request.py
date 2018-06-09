@@ -107,7 +107,8 @@ def main():
             else:
                 c2.append(artist_name(register[0],list[i]))
 
-        print("G1: ", c1)
-        print("G2: ", c2)
+        print("\nG1: ", c1)
+        print("\nG2: ", c2)
+        print("\n")
 
 if (__name__ == "__main__") : main()

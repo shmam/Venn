@@ -1,5 +1,7 @@
 # Spotify Graph Partition
 
+![GitHub Logo](/img/demo.gif)
+
 ### About
 
 
