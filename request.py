@@ -1,9 +1,7 @@
 import sys
+import os.path
 import requests
 
-# importing the client keys
-# MAKE YOUR OWN config.py FILE WITH YOUR CLIENT_ID AND CLIENT SECRET
-import config
 
 # Linear Algebra Packages
 import numpy
@@ -15,12 +13,9 @@ grant_type = 'client_credentials'
 body_params = {'grant_type' : grant_type}
 
 
-
-def client_auth():
+def client_auth(ci,cs):
     url='https://accounts.spotify.com/api/token'
-
-    # probaby redundant doing two of the same request
-    req = requests.post(url, data=body_params, auth = (config.client_id, config.client_secret))
+    req = requests.post(url, data=body_params, auth = (ci, cs))
 
     # trying out tuples for the first time becasue why not
     return req.json()["access_token"], req.status_code
@@ -48,13 +43,26 @@ def network(token,query):
 
 def main():
 
+    if(os.path.exists('./config.py')):
+        # importing the client keys
+        # MAKE YOUR OWN config.py FILE WITH YOUR CLIENT_ID AND CLIENT SECRET
+
+        import config
+        ci = config.client_id
+        cs = config.client_secret
+    else:
+        ci = client_id
+        cs = client_secret
+
+
+    # Taking the argument value in parenthesis to be the inital artist
     search_term = str(sys.argv[1])
 
     print(" Graph Partiton: " + search_term)
     print(" ---------------------------------------------")
 
 
-    register = client_auth()
+    register = client_auth(ci,cs)
     print(" > auth with Spotify API ... ")
     if(register[1] == 200):
         list = network(register[0],artist_id(register[0],search_term,"5"))
@@ -72,6 +80,8 @@ def main():
                     Adj[i][j] = 1
                 else:
                     Adj[i][j] = 0
+
+        print(Adj)
 
         d = []
         for i in range(len(list)):
@@ -110,5 +120,9 @@ def main():
         print("\nG1: ", c1)
         print("\nG2: ", c2)
         print("\n")
+
+
+
+
 
 if (__name__ == "__main__") : main()
