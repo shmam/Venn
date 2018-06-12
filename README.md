@@ -1,14 +1,19 @@
 # Spotify Graph Partition
 
-![GitHub Logo](/img/demo.gif)
+
+[![Build Status](https://travis-ci.com/shmam/Spotify-Graph-Partition.svg?branch=master)](https://travis-ci.com/shmam/Spotify-Graph-Partition)
+
+
 
 ## About
 
 The Spotify Web API is a great resource for pulling data about musical artists, especially a list of related artists. While this is helpful for discovering new music, it can also be used to identify seperate factions of artists within this inital grouping. 
 
-![digraph](https://qph.fs.quoracdn.net/main-qimg-0563516a0d43b1653e59ce5c838d9b46)
+![GitHub Logo](/img/demo.gif)
 
 First a grouping of artists is treated like a digraph, where an arc spans from artist **a** to artist **b** if Spotify says artist **b** is in artist's **a**'s related artists list. Using this Graph **G**, we then partition this into two distinct subgraphs (**G1** and **G2**) where the number of edges kept is maximized. 
+
+![digraph](https://qph.fs.quoracdn.net/main-qimg-0563516a0d43b1653e59ce5c838d9b46)
 
 The method for determining this graph partition was initally found by M. Newman in his paper *[Finding community structure in networks using the eigenvectors of matrices.](https://arxiv.org/pdf/physics/0605087v3.pdf)* This is a very extensive process that has been reduced to a functional algorithm: 
 1. Find adjanceny matrix (A) of G, and degree vector (d) of A
