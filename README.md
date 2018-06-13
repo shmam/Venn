@@ -1,4 +1,4 @@
-# Spotify Graph Partition
+# Venn
 
 
 [![Build Status](https://travis-ci.com/shmam/Spotify-Graph-Partition.svg?branch=master)](https://travis-ci.com/shmam/Spotify-Graph-Partition)
