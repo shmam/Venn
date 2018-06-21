@@ -1,3 +1,5 @@
 .vscode
 myvenv
 config.py
+.pytest_cache
+__pycache__

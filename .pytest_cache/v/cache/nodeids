@@ -1,3 +1,9 @@
 [
-  "test/test_sample.py::test_answer"
+  "venn_test.py::test_clientCredentials",
+  "venn_test.py::test_artistName_ECP",
+  "venn_test.py::test_artistName_DT1",
+  "venn_test.py::test_artistName_DT2",
+  "venn_test.py::test_newman_ECP1",
+  "venn_test.py::test_newman_ECP2",
+  "venn_test.py::test_newman_ECP3"
 ]

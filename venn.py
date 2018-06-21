@@ -8,6 +8,8 @@ import numpy
 from numpy import array
 from numpy import linalg as lin
 
+from graph_modules.partition import newman_partiton
+
 
 grant_type = 'client_credentials'
 body_params = {'grant_type' : grant_type}
@@ -26,6 +28,13 @@ def artist_id(token,query,limit):
     return art_id
 
 def artist_name(token,query):
+
+    if(query == '' or query == None):
+        return 'ERROR: INVALID QUERY'
+
+    if(token == '' or token == None):
+        return 'ERROR: INVALID TOKEN'
+
     url = 'https://api.spotify.com/v1/artists/' + query
     return requests.get(url,headers={"Authorization": 'Bearer ' + token}).json()['name']
 
@@ -41,6 +50,7 @@ def network(token,query):
     return a
 
 
+
 def main():
 
     if(os.path.exists('./config.py')):
@@ -51,6 +61,8 @@ def main():
         ci = config.client_id
         cs = config.client_secret
     else:
+
+        # credentials used by Travis CI
         ci = client_id
         cs = client_secret
 
@@ -81,48 +93,21 @@ def main():
                 else:
                     Adj[i][j] = 0
 
-        print(Adj)
 
-        d = []
-        for i in range(len(list)):
-            row_sum = 0
-            for j in range(len(list)):
-                 row_sum += Adj[j][i]
+        #
+        groups = newman_partiton(list, Adj)
 
-            d.append(row_sum)
+        g1 = []
+        g2 = []
 
-        sum_D = numpy.sum(d)
+        for i in range(len(groups[0])):
+            g1.append(artist_name(register[0],groups[0][i]))
+        for i in range(len(groups[1])):
+            g2.append(artist_name(register[0],groups[1][i]))
 
-        print(" > constructing the probability matrix ... ")
-
-        P = numpy.empty(((len(list),len(list))))
-
-        for i in range(len(list)):
-            for j in range(len(list)):
-                P[i][j] = (d[i] * d[j]) / sum_D
-
-
-        M = numpy.subtract(Adj,P)
-
-        print(" > eigen-decomposition of modular matrix ... ")
-
-        w , V = lin.eig(M)
-
-        c1 = []
-        c2 = []
-
-        for i in range(len(list)):
-            if(V[0][i] < 0):
-                c1.append(artist_name(register[0],list[i]))
-            else:
-                c2.append(artist_name(register[0],list[i]))
-
-        print("\nG1: ", c1)
-        print("\nG2: ", c2)
+        print("\nG1: ", g1)
+        print("\nG2: ", g2)
         print("\n")
-
-
-
 
 
 if (__name__ == "__main__") : main()
