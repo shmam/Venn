@@ -62,7 +62,7 @@ def test_newman_ECP2():
             [0,0,1,0,0],
             [1,0,0,0,0],
         ]
-    assert newman_partiton(labels,G) == (['1','2','3','4'],['5'])
+    assert newman_partiton(labels,G) == (['1','2','3','4','5'],[])
 
 def test_newman_ECP3():
     labels = ['1','2','3','4','5']
