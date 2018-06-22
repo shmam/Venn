@@ -63,8 +63,8 @@ def main():
     else:
 
         # credentials used by Travis CI
-        ci = client_id
-        cs = client_secret
+        ci = CLIENTID
+        cs = CLIENTSECRET
 
 
     # Taking the argument value in parenthesis to be the inital artist
@@ -94,7 +94,8 @@ def main():
                     Adj[i][j] = 0
 
 
-        #
+
+
         groups = newman_partiton(list, Adj)
 
         g1 = []

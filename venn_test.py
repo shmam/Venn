@@ -11,8 +11,8 @@ if(os.path.exists('./config.py')):
     cs = config.client_secret
 else:
     # credentials used by Travis CI
-    ci = client_id
-    cs = client_secret
+    ci = CLIENTID
+    cs = CLIENTSECRET
 
 # Testing the initial response code and making sure there is
 # a token returned
