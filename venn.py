@@ -63,8 +63,8 @@ def main():
     else:
 
         # credentials used by Travis CI
-        ci = CLIENTID
-        cs = CLIENTSECRET
+        ci = os.environ['CLIENTID']
+        cs = os.environ['CLIENTSECRET']
 
 
     # Taking the argument value in parenthesis to be the inital artist

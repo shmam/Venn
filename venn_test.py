@@ -11,8 +11,8 @@ if(os.path.exists('./config.py')):
     cs = config.client_secret
 else:
     # credentials used by Travis CI
-    ci = os.environ["CLIENTID"]
-    cs = os.environ["CLIENTSECRET"]
+    ci = os.environ['CLIENTID']
+    cs = os.environ['CLIENTSECRET']
 
 
 # Testing the initial response code and making sure there is
